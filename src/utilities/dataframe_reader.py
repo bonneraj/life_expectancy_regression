@@ -11,5 +11,5 @@ class DataFrameReader:
 
     def get_pd_dataframe(self):
         LOGGER.info(f'Retrieving file from {self.file_path}')
-        dataframe = pd.read_csv(self.file_path, names=self.column_names)
+        dataframe = pd.read_csv(self.file_path, names=self.column_names, header=0)
         return dataframe
