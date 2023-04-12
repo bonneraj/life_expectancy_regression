@@ -9,6 +9,6 @@ class TestDataFrameReader(unittest.TestCase):
         data_reader = DataFrameReader(INPUT_PATH, INPUT_FIELD_NAMES)
         df = data_reader.get_pd_dataframe()
         
-        self.assertEqual(3194, len(df))
-        self.assertEqual(48, len(df.columns))
+        self.assertEqual(3193, len(df))
+        self.assertEqual(47, len(df.columns))
         self.assertEqual(['fips', 'state', 'county'], list(df.columns)[:3])
