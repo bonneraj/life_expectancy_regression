@@ -17,10 +17,10 @@ class ModelPreProcessor:
         self.label_array, self.feature_array = self._create_feature_label_arrays(FEATURE_FIELDS, LABEL_FIELD)
 
         imputer = DataImputer()
-        self.label_array = imputer.impute_w_knn(self.label_array)
-        self.feature_array = imputer.impute_w_knn(self.feature_array)
+        label_array = imputer.impute_w_knn(self.label_array)
+        feature_array = imputer.impute_w_knn(self.feature_array)
 
-        self.x_train, self.x_test, self.y_train, self.y_test = self._create_train_test_split(TEST_SIZE, RANDOM_STATE)
+        self.x_train, self.x_test, self.y_train, self.y_test = self._create_train_test_split(feature_array, label_array, TEST_SIZE, RANDOM_STATE)
 
         return self.x_train, self.x_test, self.y_train, self.y_test
 
@@ -30,5 +30,5 @@ class ModelPreProcessor:
 
         return label_array, feature_array
 
-    def _create_train_test_split(self, test_size, random_state):
-        return train_test_split(self.feature_array, self.label_array, test_size=test_size, random_state=random_state)
+    def _create_train_test_split(self, label_array, feature_array, test_size, random_state):
+        return train_test_split(feature_array, label_array, test_size=test_size, random_state=random_state)
